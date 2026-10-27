@@ -6,7 +6,7 @@
 //   app/              the web version of the app (used for the screenshots)
 // Run from the root of the app's repo:  node <kit>/lib/build.mjs
 // (On GitHub the workflow checks out github.com/luach-sport/itzko into .kit; locally point to your copy.)
-import { rmSync, mkdirSync, cpSync, writeFileSync } from 'node:fs';
+import { rmSync, mkdirSync, cpSync, writeFileSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadConfig } from './config.mjs';
@@ -31,6 +31,11 @@ if (cfg.kind !== 'hub') {
   cpSync(join(root, cfg.appDir || 'www'), join(out, 'app'), { recursive: true });
   if (cfg.versionFile) {
     writeFileSync(join(out, 'app', cfg.versionFile), 'window.' + cfg.versionGlobal + ' = ' + JSON.stringify({ version: info.version || 'dev', build: info.build || 'dev' }) + ';\n');
+  }
+  // Apps that keep their version inside the code: "stamp": { "file": "app.js", "find": "regex", "with": "…{{VERSION}}…" }
+  if (cfg.stamp && info.version) {
+    const f = join(out, 'app', cfg.stamp.file);
+    writeFileSync(f, readFileSync(f, 'utf8').replace(new RegExp(cfg.stamp.find), cfg.stamp.with.split('{{VERSION}}').join(info.version)));
   }
 }
 if (cfg.kind === 'hub') writeFileSync(join(out, 'apps.json'), JSON.stringify(apps, null, 1) + '\n');

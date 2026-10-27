@@ -46,6 +46,7 @@ export function writePage({ root, kitDir, out, cfg, apps, app, info }) {
     TITLE: cfg.title, DESCRIPTION: cfg.description, THEME_COLOR: cfg.themeColor || a.color || '#16181D',
     SITE_URL: url, APP_ID: cfg.id, APP_NAME: a.name || cfg.name, SLOGAN: a.slogan || '', APK_URL: a.apk || '',
     SHARE_TEXT: shareText, OFFLINE: a.offline || '', VERSION: info.version, BUILD: info.build || '–', DATE: date,
+    VERSION_LABEL: info.version + (info.build ? ' (בנייה ' + info.build + ')' : ''),
     CREDIT_TEXT: cfg.creditText || '', FOOTER_NOTE: cfg.footerNote || '', HUB_URL: HUB_URL
   };
   let html = readFileSync(join(kitDir, 'shell.html'), 'utf8');
