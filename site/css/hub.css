@@ -1,0 +1,36 @@
+/* The main Itzko site: the four app icons in the hero, and a big card for every app. */
+.hub-hero .brand h1 { font-size: clamp(34px, 6.4vw, 54px); }
+.hub-icons { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, 96px); gap: 16px; transform: rotate(-4deg); }
+.hub-icons img { width: 96px; height: 96px; border-radius: 26px; box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.6); background: rgba(255, 255, 255, 0.1); }
+.hub-icons img:nth-child(2n) { transform: translateY(18px); }
+
+.hub-list { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 16px; }
+.hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.hub-app { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 16px; position: relative; overflow: hidden; }
+.hub-app::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--app); }
+.hub-shot { display: block; background: #16181D; border-radius: 26px; padding: 5px; align-self: start; box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.5); }
+.hub-shot img { display: block; width: 100%; height: auto; aspect-ratio: 720 / 1480; border-radius: 21px; background: var(--app); }
+.hub-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding-top: 4px; }
+.hub-head { display: flex; align-items: center; gap: 12px; }
+.hub-head img { width: 60px; height: 60px; border-radius: 17px; background: var(--app); }
+.hub-head h2 { font-size: 26px; font-weight: 900; }
+.hub-slogan { color: var(--muted); font-size: 14px; font-weight: 600; }
+.hub-body p { font-size: 15.5px; }
+.hub-off { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-size: 13.5px; font-weight: 700; color: var(--green-text); background: var(--green-soft); border-radius: 12px; padding: 4px 10px; }
+.hub-ver { color: var(--muted); font-size: 13px; }
+.hub-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.hub-acts .btn { min-height: 44px; font-size: 15px; padding: 0 16px; }
+.btn.app { background: var(--app); color: #FFFFFF; }
+.btn.plain { background: var(--primary-soft); color: var(--ink); }
+
+@media (max-width: 900px) {
+  .hub-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .hub-icons { display: none; }
+}
+@media (max-width: 480px) {
+  .hub-app { grid-template-columns: 104px minmax(0, 1fr); gap: 12px; padding: 12px; }
+  .hub-head img { width: 48px; height: 48px; }
+  .hub-head h2 { font-size: 22px; }
+}

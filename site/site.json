@@ -1,0 +1,24 @@
+{
+  "id": "itzko",
+  "kind": "hub",
+  "name": "האפליקציות של Itzko",
+  "url": "https://luach-sport.github.io/itzko/",
+  "title": "האפליקציות של Itzko – שמרתי, MyCar, חובותיי ותפילתי",
+  "description": "כל האפליקציות של Itzko במקום אחד: שמרתי, MyCar, חובותיי ותפילתי. הורדה לאנדרואיד, מדריך לכל כפתור, בלי פרסומות ובלי הרשמה.",
+  "themeColor": "#16181D",
+  "share": "היי! אלה האפליקציות של Itzko: שמרתי, MyCar, חובותיי ותפילתי. אני משתמש בהן ואשמח מאוד לשתף אותך:",
+  "icon": "site/icon.png",
+  "css": [
+    "brand.css",
+    "hub.css"
+  ],
+  "parts": [
+    "hero",
+    "apps",
+    "install",
+    "kit:share-band",
+    "about",
+    "footer"
+  ],
+  "fonts": "site/fonts"
+}
