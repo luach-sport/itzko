@@ -18,6 +18,7 @@
     "short": "כמה עולה כל נסיעה בדלק, יומן נסיעות ותדלוקים, וכמה האוטו באמת צורך.",
     "offline": "עובדת בלי אינטרנט: החישוב, הנסיעות והתדלוקים נשמרים בטלפון",
     "color": "#1652F0",
+    "shot": "calc",
     "repo": "luach-sport/mycar",
     "site": "https://luach-sport.github.io/mycar/",
     "apk": "https://github.com/luach-sport/mycar/releases/latest/download/mycar.apk",

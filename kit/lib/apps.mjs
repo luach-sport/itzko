@@ -14,11 +14,12 @@ const OFFLINE_ICON = '<svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><
 const DL_ICON = '<svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>';
 
 // dl: download counts by app id (kit/lib/downloads.mjs); kit/js/downloads.js refreshes them live.
+// The picture is the app's main screen: shots/<shot>.jpg on its site (`shot` in apps.json, 'home' when not set).
 export function hubCards(apps, dl) {
   dl = dl || {};
   return apps.map((a) =>
     '    <article class="hub-app" style="--app:' + esc(a.color) + '">\n' +
-    '      <a class="hub-shot" href="' + esc(a.site) + '" aria-hidden="true" tabindex="-1"><img src="' + esc(a.site) + 'shots/home.jpg" alt="" width="720" height="1480" loading="lazy"></a>\n' +
+    '      <a class="hub-shot" href="' + esc(a.site) + '" aria-hidden="true" tabindex="-1"><img src="' + esc(a.site) + 'shots/' + esc(a.shot || 'home') + '.jpg" alt="" width="720" height="1480" loading="lazy"></a>\n' +
     '      <div class="hub-body">\n' +
     '        <div class="hub-head"><img src="' + esc(a.site) + 'icon.png" alt="" width="60" height="60"><div><h2>' + esc(a.name) + '</h2><span class="hub-slogan">' + esc(a.slogan) + '</span></div></div>\n' +
     '        <p>' + esc(a.short) + '</p>\n' +
