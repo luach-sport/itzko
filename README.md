@@ -1,6 +1,6 @@
 # האפליקציות של Itzko
 
-**האתר: https://luach-sport.github.io/itzko/**
+**האתר: https://luach-sport.github.io/itzko/** · **המספרים (כמה הורידו כל אפליקציה): https://luach-sport.github.io/itzko/stats/**
 
 | אפליקציה | מה היא עושה | אתר |
 |---|---|---|

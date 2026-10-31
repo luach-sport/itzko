@@ -14,4 +14,9 @@
           <span id="copy-label">העתקת קישור ההורדה</span>
         </button>
       </div>
+      <p class="dl-count" data-downloads="{{REPO}}"{{DL_HIDDEN}}>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+        <span>הורד <b class="n">{{DOWNLOADS}}</b></span>
+        <a href="{{HUB_URL}}stats/#{{APP_ID}}">כל המספרים</a>
+      </p>
       <input id="apk-url" class="ltr" type="text" readonly value="{{APK_URL}}" aria-label="קישור ההורדה" hidden>

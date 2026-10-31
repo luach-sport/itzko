@@ -5,10 +5,11 @@
 import { readFileSync, writeFileSync, cpSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { esc, moreApps, hubCards } from './apps.mjs';
+import { timesText } from './downloads.mjs';
 import { HUB_URL } from './config.mjs';
 
 const KIT_CSS_BEFORE = ['tokens.css'];
-const KIT_CSS = ['base.css', 'hero.css', 'intro.css', 'chapters.css', 'offline.css', 'share.css', 'credit.css'];
+const KIT_CSS = ['base.css', 'hero.css', 'intro.css', 'chapters.css', 'offline.css', 'share.css', 'downloads.css', 'credit.css'];
 
 function whatsNew(info) {
   if (!info.notes.length) return '';
@@ -24,7 +25,8 @@ function readPart(dir, name) {
   return readFileSync(file, 'utf8').replace(/\s+$/, '') + '\n';
 }
 
-export function writePage({ root, kitDir, out, cfg, apps, app, info }) {
+export function writePage({ root, kitDir, out, cfg, apps, app, info, dl }) {
+  dl = dl || {};
   const site = join(root, 'site');
   const part = (name) => {
     if (name === 'WHATS_NEW') return whatsNew(info);
@@ -47,12 +49,14 @@ export function writePage({ root, kitDir, out, cfg, apps, app, info }) {
     SITE_URL: url, APP_ID: cfg.id, APP_NAME: a.name || cfg.name, SLOGAN: a.slogan || '', APK_URL: a.apk || '',
     SHARE_TEXT: shareText, OFFLINE: a.offline || '', VERSION: info.version, BUILD: info.build || '–', DATE: date,
     VERSION_LABEL: info.version + (info.build ? ' (בנייה ' + info.build + ')' : ''),
-    CREDIT_TEXT: cfg.creditText || '', FOOTER_NOTE: cfg.footerNote || '', HUB_URL: HUB_URL
+    CREDIT_TEXT: cfg.creditText || '', FOOTER_NOTE: cfg.footerNote || '', HUB_URL: HUB_URL,
+    REPO: a.repo || '', DOWNLOADS: timesText((dl[cfg.id] || {}).total || 0)
   };
   let html = readFileSync(join(kitDir, 'shell.html'), 'utf8');
   const siteJson = JSON.stringify({ id: cfg.id, title: cfg.title, url, shareText }).replace(/</g, '\\u003c');
   html = html.replace('{{STYLES}}', () => styles).replace('{{BODY}}', () => body.replace(/\s+$/, '')).replace('{{SITE_JSON}}', () => siteJson);
-  html = html.split('{{MORE_APPS}}').join(moreApps(apps, cfg.id)).split('{{HUB_APPS}}').join(hubCards(apps));
+  html = html.split('{{MORE_APPS}}').join(moreApps(apps, cfg.id)).split('{{HUB_APPS}}').join(hubCards(apps, dl));
+  html = html.split('{{DL_HIDDEN}}').join((dl[cfg.id] || {}).total ? '' : ' hidden');
   for (const [k, v] of Object.entries(values)) html = html.split('{{' + k + '}}').join(esc(v));
   const left = html.match(/\{\{[A-Z_]+\}\}/);
   if (left) throw new Error('unfilled placeholder in the site: ' + left[0]);
@@ -64,7 +68,9 @@ export function writePage({ root, kitDir, out, cfg, apps, app, info }) {
   if (existsSync(join(site, 'js'))) cpSync(join(site, 'js'), join(out, 'js'), { recursive: true });
   if (cfg.fonts && existsSync(join(root, cfg.fonts))) cpSync(join(root, cfg.fonts), join(out, 'fonts'), { recursive: true });
   cpSync(join(root, cfg.icon), join(out, 'icon.png'));
-  writeFileSync(join(out, 'version.json'), JSON.stringify({ id: cfg.id, version: info.version, build: info.build, notes: info.notes, date }) + '\n');
+  writeFileSync(join(out, 'version.json'), JSON.stringify({ id: cfg.id, version: info.version, build: info.build, notes: info.notes, date, downloads: (dl[cfg.id] || {}).total }) + '\n');
+  // Extra pages of a site, copied as they are (the main site's numbers page: site/static/stats/).
+  if (existsSync(join(site, 'static'))) cpSync(join(site, 'static'), out, { recursive: true });
   writeFileSync(join(out, '.nojekyll'), '');
   return html;
 }

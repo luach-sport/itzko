@@ -16,6 +16,7 @@ import { launch } from './browser.mjs';
 import { takeShots } from './shots.mjs';
 import { writePage } from './page.mjs';
 import { finishAndCheck } from './checks.mjs';
+import { readDownloads } from './downloads.mjs';
 
 const kitDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const root = process.cwd();
@@ -47,7 +48,9 @@ try {
     const appErrors = await takeShots({ browser, base: server.base, out, info, root, cfg });
     if (appErrors.length) console.log('app errors while taking screenshots:', appErrors.slice(0, 5));
   }
-  const html = writePage({ root, kitDir, out, cfg, apps, app, info });
+  const dl = await readDownloads(cfg.kind === 'hub' ? apps : apps.filter((a) => a.id === cfg.id));
+  console.log('downloads', Object.entries(dl).map(([k, v]) => k + '=' + v.total).join(' ') || 'not available');
+  const html = writePage({ root, kitDir, out, cfg, apps, app, info, dl });
   const problems = await finishAndCheck({ browser, base: server.base, out, html });
   if (problems.length) throw new Error('site problems:\n- ' + problems.join('\n- '));
 } finally {
