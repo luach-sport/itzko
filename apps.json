@@ -1,5 +1,18 @@
 [
   {
+    "id": "kaduraglan",
+    "name": "כדורגלן",
+    "slogan": "Kaduraglan",
+    "short": "חידון כדורגל בעברית עם מאות שאלות אמיתיות על כדורגל ישראלי ועולמי: מסע חידות, אתגר יומי, הישרדות וראש בראש עם חברים.",
+    "offline": "כל השאלות וכל מצבי המשחק עובדים בלי אינטרנט",
+    "color": "#0E9F59",
+    "shot": "home",
+    "repo": "luach-sport/kaduraglan",
+    "site": "https://luach-sport.github.io/kaduraglan/",
+    "apk": "https://github.com/luach-sport/kaduraglan/releases/latest/download/kaduraglan.apk",
+    "share": "היי! אני משחק בכדורגלן, חידון כדורגל בעברית עם מאות שאלות על כדורגל ישראלי ועולמי, אתגר יומי וראש בראש עם חברים. עובד בלי אינטרנט. אשמח מאוד לשתף אותך:"
+  },
+  {
     "id": "kamti",
     "name": "קמתי",
     "slogan": "השעון המעורר שלא מוותר",
