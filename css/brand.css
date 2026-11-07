@@ -1,0 +1,27 @@
+/* The main Itzko site: dark ink with each app in its own colour. */
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/Rubik-var.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --primary: #16181D;
+  --primary-text: #16181D;
+  --primary-soft: #EEF0F3;
+  --on-primary: #FFFFFF;
+  --hero: #16181D;
+  --hero-ink: #FFFFFF;
+  --hero-muted: #D6D9DF;
+  --hero-chip: rgba(255, 255, 255, 0.14);
+  --maker-accent: #D9381E;
+  --credit-accent: #FF7A5C;
+  --credit-mono: #FFFFFF;
+  --credit-mono-ink: #16181D;
+  --font: 'Rubik', 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --primary: #F1F2F4; --primary-text: #F1F2F4; --on-primary: #111317; --hero: #1B1E24; }
+}
+:root[data-theme="dark"] { --primary: #F1F2F4; --primary-text: #F1F2F4; --on-primary: #111317; --hero: #1B1E24; }

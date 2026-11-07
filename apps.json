@@ -1,0 +1,90 @@
+[
+ {
+  "id": "chibarti",
+  "name": "חיברתי",
+  "slogan": "מטלפון לטלפון, בלי אינטרנט",
+  "short": "מחברים שני טלפוני אנדרואיד ישירות: שיקוף מסך עם קול, קבצים ותמונות באיכות מלאה, והודעות. מוצפן, ורק באישור.",
+  "offline": "עובדת לגמרי בלי אינטרנט: הטלפונים מתחברים ישירות ב-Wi-Fi",
+  "color": "#0A8F94",
+  "shot": "home",
+  "repo": "luach-sport/chibarti",
+  "site": "https://luach-sport.github.io/chibarti/",
+  "apk": "https://github.com/luach-sport/chibarti/releases/latest/download/chibarti.apk",
+  "share": "היי! אני משתמש באפליקציה חיברתי. היא מחברת שני טלפונים ישירות, בלי אינטרנט: משתפים מסך, שולחים קבצים ותמונות באיכות מלאה ושולחים הודעות. אשמח מאוד לשתף אותך:"
+ },
+ {
+  "id": "kaduraglan",
+  "name": "כדורגלן",
+  "slogan": "Kaduraglan",
+  "short": "חידון כדורגל בעברית עם מאות שאלות אמיתיות על כדורגל ישראלי ועולמי: מסע חידות, אתגר יומי, הישרדות וראש בראש עם חברים.",
+  "offline": "כל השאלות וכל מצבי המשחק עובדים בלי אינטרנט",
+  "color": "#0E9F59",
+  "shot": "home",
+  "repo": "luach-sport/kaduraglan",
+  "site": "https://luach-sport.github.io/kaduraglan/",
+  "apk": "https://github.com/luach-sport/kaduraglan/releases/latest/download/kaduraglan.apk",
+  "share": "היי! אני משחק בכדורגלן, חידון כדורגל בעברית עם מאות שאלות על כדורגל ישראלי ועולמי, אתגר יומי וראש בראש עם חברים. עובד בלי אינטרנט. אשמח מאוד לשתף אותך:"
+ },
+ {
+  "id": "kamti",
+  "name": "קמתי",
+  "slogan": "השעון המעורר שלא מוותר",
+  "short": "שעון מעורר שנכבה רק אחרי משימה: תרגיל, צעדים, ניעור או \"מודה אני\". הווליום נעול, והוא חוזר גם אחרי כיבוי.",
+  "offline": "עובד לגמרי בלי אינטרנט, גם בנגנים",
+  "color": "#5B3DF5",
+  "shot": "home",
+  "repo": "luach-sport/kamti",
+  "site": "https://luach-sport.github.io/kamti/",
+  "apk": "https://github.com/luach-sport/kamti/releases/latest/download/kamti.apk",
+  "share": "היי! אני משתמש באפליקציה קמתי. זה שעון מעורר שלא נכבה עד שפותרים תרגיל, הולכים כמה צעדים או מנערים את הטלפון, ככה באמת קמים. עובד גם בלי אינטרנט. אשמח מאוד לשתף אותך:"
+ },
+ {
+  "id": "shamarti",
+  "name": "שמרתי",
+  "slogan": "כל מה ששווה לזכור, במקום אחד",
+  "short": "שומרים סרטונים מטיקטוק, אינסטגרם ויוטיוב, אתרים וכל קישור, עם תמונה, תיאור וקטגוריה, ומוצאים הכל בחיפוש.",
+  "offline": "השמירות, התיאורים והתמונות נשמרים בטלפון ונפתחים גם בלי אינטרנט",
+  "color": "#D9381E",
+  "repo": "luach-sport/shamarti",
+  "site": "https://luach-sport.github.io/shamarti/",
+  "apk": "https://github.com/luach-sport/shamarti/releases/latest/download/shamarti.apk",
+  "share": "היי! אני משתמש באפליקציה שמרתי. שומרים בה סרטונים מטיקטוק, אינסטגרם ויוטיוב וכל קישור, עם תיאור וקטגוריה, ומוצאים הכל בקלות. אשמח מאוד לשתף אותך:"
+ },
+ {
+  "id": "mycar",
+  "name": "MyCar",
+  "slogan": "עד הטיפה האחרונה",
+  "short": "כמה עולה כל נסיעה בדלק, יומן נסיעות ותדלוקים, וכמה האוטו באמת צורך.",
+  "offline": "עובדת בלי אינטרנט: החישוב, הנסיעות והתדלוקים נשמרים בטלפון",
+  "color": "#1652F0",
+  "shot": "calc",
+  "repo": "luach-sport/mycar",
+  "site": "https://luach-sport.github.io/mycar/",
+  "apk": "https://github.com/luach-sport/mycar/releases/latest/download/mycar.apk",
+  "share": "היי! אני משתמש באפליקציה MyCar. היא מחשבת כמה עולה כל נסיעה בדלק ושומרת יומן נסיעות ותדלוקים, גם בלי אינטרנט. אשמח מאוד לשתף אותך:"
+ },
+ {
+  "id": "chovotai",
+  "name": "חובותיי",
+  "slogan": "חוק הלימוד היומי שלי",
+  "short": "בוחרים חובות לימוד, מסמנים מה למדתם, ומקבלים תזכורות. ספרים ושיעורים נפתחים בדיוק במקום של היום.",
+  "offline": "עובדת לגמרי בלי אינטרנט, כולל הספרים והשיעורים",
+  "color": "#1E5F74",
+  "repo": "luach-sport/chovotai",
+  "site": "https://luach-sport.github.io/chovotai/",
+  "apk": "https://github.com/luach-sport/chovotai/releases/latest/download/chovotai.apk",
+  "share": "היי! אני משתמש באפליקציה חובותיי. מסדרים בה את חוק הלימוד היומי, עם ספרים, שיעורים ותזכורות, והכל עובד בלי אינטרנט. אשמח מאוד לשתף אותך:"
+ },
+ {
+  "id": "tfilati",
+  "name": "תפילתי",
+  "slogan": "מעקב שבועי אחרי התפילות",
+  "short": "כמה תפילות במניין וכמה בסך הכול השבוע, עם יעדים, היסטוריה ותזכורות שנחות בשבת ובחג.",
+  "offline": "עובדת לגמרי בלי אינטרנט, והנתונים נשארים רק בטלפון",
+  "color": "#0B1026",
+  "repo": "luach-sport/tfilati",
+  "site": "https://luach-sport.github.io/tfilati/",
+  "apk": "https://github.com/luach-sport/tfilati/releases/latest/download/tfilati.apk",
+  "share": "היי! אני משתמש באפליקציה תפילתי. עוקבים בה אחרי התפילות של השבוע, כמה במניין וכמה בסך הכול, עם תזכורות. עובדת בלי אינטרנט. אשמח מאוד לשתף אותך:"
+ }
+]
