@@ -1,0 +1,42 @@
+/* The numbers page of the main Itzko site. */
+.stats-page { gap: 32px; }
+.stats-top { background: var(--hero); color: var(--hero-ink); border-radius: 32px; padding: clamp(22px, 5vw, 40px); display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow); }
+.stats-top .back { color: var(--hero-muted); font-size: 14px; font-weight: 600; text-decoration: none; align-self: flex-start; }
+.stats-top h1 { font-size: clamp(32px, 6vw, 48px); font-weight: 900; }
+.stats-sub { color: var(--hero-muted); font-size: 16px; }
+.stats-total { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; color: var(--hero-muted); font-weight: 600; }
+.stats-total .big { font-size: clamp(44px, 9vw, 64px); font-weight: 900; color: var(--hero-ink); line-height: 1; }
+.btn.refresh { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; min-height: 44px; padding: 0 16px; border: 0; border-radius: 16px; background: var(--hero-chip); color: var(--hero-ink); font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; }
+.btn.refresh[disabled] { opacity: 0.6; cursor: default; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.stat-app { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 18px; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; scroll-margin-top: 16px; min-width: 0; }
+.stat-app::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--app); }
+.sa-head { display: flex; align-items: center; gap: 12px; }
+.sa-head img { width: 52px; height: 52px; border-radius: 15px; background: var(--app); }
+.sa-head h2 { font-size: 24px; font-weight: 900; }
+.sa-head a { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.sa-big { display: flex; align-items: baseline; gap: 8px; color: var(--muted); font-weight: 700; }
+.sa-big .big { font-size: 52px; font-weight: 900; line-height: 1; color: var(--ink); }
+.sa-facts { margin: 0; padding: 0 18px 0 0; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+.sa-err { color: var(--muted); }
+details { border-top: 1px solid var(--line); padding-top: 10px; }
+summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+th, td { text-align: right; padding: 7px 6px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; font-size: 13px; }
+td.n { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.stats-note { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: clamp(18px, 4vw, 28px); display: flex; flex-direction: column; gap: 12px; }
+.stats-note h2 { font-size: 22px; font-weight: 800; }
+.stats-note dl { margin: 0; display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 10px 16px; }
+.stats-note dt { font-weight: 800; }
+.stats-note dd { margin: 0; color: var(--muted); font-size: 15px; }
+.stats-foot { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; text-align: center; }
+.stats-foot .made { color: var(--ink); font-size: 17px; font-weight: 600; }
+
+@media (max-width: 760px) {
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+  .stats-note dl { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .stats-note dd { margin-bottom: 8px; }
+}

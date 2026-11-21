@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>המספרים – האפליקציות של Itzko</title>
+<meta name="description" content="כמה פעמים הורידו כל אחת מהאפליקציות של Itzko, לפי גרסה, מתעדכן חי מ-GitHub.">
+<meta name="theme-color" content="#16181D">
+<link rel="icon" href="../icon.png">
+<!-- The numbers page of the main Itzko site. Its numbers are read live from GitHub (../kit/js/downloads.js);
+     the list of apps comes from ../apps.json, so a new app shows up here by itself. -->
+<link rel="stylesheet" href="../kit/css/tokens.css">
+<link rel="stylesheet" href="../css/brand.css">
+<link rel="stylesheet" href="../kit/css/base.css">
+<link rel="stylesheet" href="stats.css">
+</head>
+<body>
+<div class="page stats-page">
+
+  <header class="stats-top">
+    <a class="back" href="../">→ כל האפליקציות של Itzko</a>
+    <h1>המספרים של האפליקציות</h1>
+    <p class="stats-sub">כמה פעמים הורידו כל אפליקציה, לפי GitHub. <span id="checked">בודק…</span></p>
+    <div class="stats-total" id="total" hidden>
+      <span class="big" id="total-n">0</span>
+      <span>הורדות של כל האפליקציות ביחד</span>
+    </div>
+    <button type="button" class="btn refresh" id="refresh">
+      <svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></svg>
+      <span>לבדוק שוב עכשיו</span>
+    </button>
+  </header>
+
+  <section class="stats-grid" id="apps" aria-label="האפליקציות"></section>
+
+  <section class="stats-note" aria-labelledby="note-h">
+    <h2 id="note-h">מה רואים כאן, ומה אי אפשר לדעת</h2>
+    <dl>
+      <dt>הורדות</dt>
+      <dd>כמה פעמים קובץ ההתקנה (APK) הורד מ-GitHub: מכפתור ההורדה באתר, מקישור ששלחו, או כשחבר שולח את האפליקציה כקובץ והיא לא נמצאת בטלפון. זה לא מספר אנשים: מי שהוריד פעמיים נספר פעמיים, וגם הורדות לבדיקה נספרות.</dd>
+      <dt>עדכונים מתוך האפליקציה</dt>
+      <dd>בשמרתי וב-MyCar: כמה פעמים אפליקציה שכבר מותקנת בטלפון הורידה גרסה חדשה. זה סימן טוב שהאפליקציה מותקנת ובשימוש.</dd>
+      <dt>כמה מותקנות עכשיו</dt>
+      <dd>לא ידוע. האפליקציות לא שולחות שום מידע מהטלפון, ולכן אין דרך לספור מי מחזיק אותן עכשיו.</dd>
+      <dt>כמה הוסיפו למסך הבית</dt>
+      <dd>לא ניתן לדעת. אנדרואיד לא מדווח לאף אפליקציה אם שמו אותה במסך הבית.</dd>
+    </dl>
+  </section>
+
+  <footer class="stats-foot">
+    <span class="made">פותח על ידי <b>Itzko</b></span>
+    <a href="../">לכל האפליקציות</a>
+  </footer>
+</div>
+<script src="../kit/js/downloads.js"></script>
+<script src="stats.js"></script>
+</body>
+</html>
