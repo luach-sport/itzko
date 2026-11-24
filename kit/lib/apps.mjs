@@ -32,3 +32,14 @@ export function hubCards(apps, dl) {
     '    </article>'
   ).join('\n');
 }
+
+// "Glow, מעשרותי, … ותפילתי" – every app's name, for the main site's title and share text.
+export function namesText(apps) {
+  const n = apps.map((a) => a.name);
+  return n.length < 2 ? n.join('') : n.slice(0, -1).join(', ') + ' ו' + n[n.length - 1];
+}
+
+// The app icons in the main site's hero: the newest six (apps.json lists the newest first).
+export function hubIcons(apps) {
+  return apps.slice(0, 6).map((a) => '      <img src="' + esc(a.site) + 'icon.png" alt="" width="96" height="96">').join('\n');
+}

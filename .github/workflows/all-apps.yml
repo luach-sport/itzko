@@ -1,0 +1,67 @@
+name: All apps ZIP
+
+# itzko-apps.zip: the latest APK of every app in apps.json, in one file, for the "download all" button on the
+# main site. Kept as a file of the "all-apps" release, so the link never changes:
+#   https://github.com/luach-sport/itzko/releases/download/all-apps/itzko-apps.zip
+# Every half hour it checks whether any app got a new version; only then it builds a new ZIP and rebuilds the site.
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'apps.json'
+      - 'tools/all-apps/**'
+      - '.github/workflows/all-apps.yml'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'לבנות מחדש גם אם אין גרסה חדשה'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: all-apps
+  cancel-in-progress: false
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check the apps and build the ZIP if something is new
+        id: zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE: ${{ (inputs.force || github.event_name == 'push') && '1' || '0' }}
+        run: python3 tools/all-apps/make_zip.py
+
+      - name: Put the new ZIP in the "all-apps" release
+        if: steps.zip.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! gh release view all-apps >/dev/null 2>&1; then
+            gh release create all-apps --title "כל האפליקציות של Itzko (ZIP)" --notes-file out/notes.md --latest=false
+          fi
+          gh release upload all-apps out/itzko-apps.zip --clobber
+          gh release edit all-apps --notes-file out/notes.md
+
+      - name: Check the download link
+        if: steps.zip.outputs.changed == 'true'
+        run: |
+          URL=https://github.com/luach-sport/itzko/releases/download/all-apps/itzko-apps.zip
+          SIZE=$(curl -sIL "$URL" | grep -i '^content-length' | tail -1 | tr -dc '0-9')
+          echo "::notice title=link::$URL size=$SIZE local=$(stat -c %s out/itzko-apps.zip)"
+
+      - name: Rebuild the main site (size and date of the ZIP)
+        if: steps.zip.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run site.yml --ref main

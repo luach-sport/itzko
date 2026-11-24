@@ -66,4 +66,6 @@ jobs:
           done
           B=https://luach-sport.github.io
           code() { curl -s -o /dev/null -w '%{http_code}' "$1"; }
-          echo "::notice title=live::updated=$([ "$LIVE" = "${GITHUB_RUN_ID}" ] && echo yes || echo no) hub=$(code $B/itzko/) apps=$(code $B/itzko/apps.json) kamti=$(code $B/kamti/) shamarti=$(code $B/shamarti/) mycar=$(code $B/mycar/) chovotai=$(code $B/chovotai/) tfilati=$(code $B/tfilati/)"
+          SITES=$(python3 -c "import json;print(' '.join(a['id'] for a in json.load(open('apps.json'))))")
+          ALL=""; for a in $SITES; do ALL="$ALL $a=$(code $B/$a/)"; done
+          echo "::notice title=live::updated=$([ "$LIVE" = "${GITHUB_RUN_ID}" ] && echo yes || echo no) hub=$(code $B/itzko/) apps=$(code $B/itzko/apps.json) count=[$(curl -s $B/itzko/ | grep -o '[0-9]* אפליקציות</span>' | head -1)] zip=$(curl -sIL -o /dev/null -w '%{http_code}' https://github.com/luach-sport/itzko/releases/download/all-apps/itzko-apps.zip)$ALL"

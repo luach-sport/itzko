@@ -1,0 +1,15 @@
+  <!-- All the apps in one ZIP (built by .github/workflows/all-apps.yml, always the latest versions) -->
+  <section class="all-zip" id="all-apps" aria-labelledby="zip-h">
+    <span class="zip-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg></span>
+    <div class="zip-copy">
+      <span class="eyebrow">בלחיצה אחת</span>
+      <h2 id="zip-h">כל {{APP_COUNT}} האפליקציות בקובץ אחד</h2>
+      <p>קובץ ZIP עם הגרסה האחרונה של כל אפליקציה. הוא נבנה מחדש לבד בכל פעם שאחת האפליקציות מקבלת גרסה חדשה, כך שתמיד יורד המעודכן.</p>
+      <span class="zip-meta" data-zip-meta>{{ZIP_META}}</span>
+    </div>
+    <a class="btn zip-btn" href="{{ZIP_URL}}">
+      <svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+      הורדת כל האפליקציות (ZIP)
+    </a>
+    <p class="zip-tip">בטלפון: פותחים את הקובץ במנהל הקבצים, לוחצים "חילוץ", ואז על כל אפליקציה שרוצים להתקין. במחשב: מחלצים ומעבירים לטלפון את מה שצריך.</p>
+  </section>

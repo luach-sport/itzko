@@ -17,6 +17,7 @@ import { takeShots } from './shots.mjs';
 import { writePage } from './page.mjs';
 import { finishAndCheck } from './checks.mjs';
 import { readDownloads } from './downloads.mjs';
+import { readZip } from './all-apps.mjs';
 
 const kitDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const root = process.cwd();
@@ -50,7 +51,9 @@ try {
   }
   const dl = await readDownloads(cfg.kind === 'hub' ? apps : apps.filter((a) => a.id === cfg.id));
   console.log('downloads', Object.entries(dl).map(([k, v]) => k + '=' + v.total).join(' ') || 'not available');
-  const html = writePage({ root, kitDir, out, cfg, apps, app, info, dl });
+  const zip = cfg.kind === 'hub' ? await readZip() : null;
+  if (cfg.kind === 'hub') console.log('all-apps zip', zip ? zip.size + ' bytes, ' + zip.date : 'not available');
+  const html = writePage({ root, kitDir, out, cfg, apps, app, info, dl, zip });
   const problems = await finishAndCheck({ browser, base: server.base, out, html });
   if (problems.length) throw new Error('site problems:\n- ' + problems.join('\n- '));
 } finally {

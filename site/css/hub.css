@@ -1,4 +1,4 @@
-/* The main Itzko site: the four app icons in the hero, and a big card for every app. */
+/* The main Itzko site: the newest app icons in the hero, and a big card for every app. */
 .hub-hero .brand h1 { font-size: clamp(34px, 6.4vw, 54px); }
 .hub-icons { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, 96px); gap: 16px; transform: rotate(-4deg); }
 .hub-icons img { width: 96px; height: 96px; border-radius: 26px; box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.6); background: rgba(255, 255, 255, 0.1); }
@@ -35,3 +35,28 @@
   .hub-head h2 { font-size: 22px; }
 }
 .all-stats { align-self: flex-start; font-weight: 700; font-size: 15px; color: var(--ink); }
+
+/* All the apps in one ZIP */
+.all-zip { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px 20px; background: var(--hero); color: var(--hero-ink); border-radius: 28px; padding: 24px; scroll-margin-top: 16px; }
+.zip-tile { width: 60px; height: 60px; border-radius: 18px; background: var(--hero-chip); display: grid; place-items: center; }
+.zip-tile .i { width: 30px; height: 30px; stroke: currentColor; }
+.zip-copy { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.zip-copy .eyebrow { color: var(--hero-muted); }
+.zip-copy h2 { font-size: clamp(22px, 3.4vw, 30px); font-weight: 900; color: var(--hero-ink); }
+.zip-copy p { color: var(--hero-muted); font-size: 15.5px; }
+.zip-meta { align-self: flex-start; font-size: 13.5px; font-weight: 700; background: var(--hero-chip); border-radius: 12px; padding: 4px 10px; }
+.btn.zip-btn { background: #FFFFFF; color: #16181D; min-height: 52px; white-space: nowrap; }
+.zip-tip { grid-column: 1 / -1; color: var(--hero-muted); font-size: 14px; border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 12px; }
+@media (min-width: 901px) {
+  .hub-icons { grid-template-columns: repeat(3, 96px); }
+  .hub-icons img:nth-child(2n) { transform: none; }
+  .hub-icons img:nth-child(3n+2) { transform: translateY(18px); }
+}
+@media (max-width: 900px) {
+  .hub-icons img:nth-child(n+5) { display: none; }
+}
+@media (max-width: 640px) {
+  .all-zip { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .zip-tile { display: none; }
+  .btn.zip-btn { grid-column: 1 / -1; justify-content: center; white-space: normal; }
+}

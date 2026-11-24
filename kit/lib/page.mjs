@@ -4,7 +4,8 @@
 // then fills the {{PLACEHOLDERS}} and copies the styles, scripts, font and icon next to it.
 import { readFileSync, writeFileSync, cpSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { esc, moreApps, hubCards } from './apps.mjs';
+import { esc, moreApps, hubCards, hubIcons, namesText } from './apps.mjs';
+import { zipMeta, ZIP_URL } from './all-apps.mjs';
 import { timesText } from './downloads.mjs';
 import { HUB_URL } from './config.mjs';
 
@@ -25,8 +26,11 @@ function readPart(dir, name) {
   return readFileSync(file, 'utf8').replace(/\s+$/, '') + '\n';
 }
 
-export function writePage({ root, kitDir, out, cfg, apps, app, info, dl }) {
+export function writePage({ root, kitDir, out, cfg, apps, app, info, dl, zip }) {
   dl = dl || {};
+  // The main site never hard-codes how many apps there are: {{APP_COUNT}} and {{APP_NAMES}} come from apps.json.
+  const fill = (s) => (s == null ? s : String(s).split('{{APP_COUNT}}').join(String(apps.length)).split('{{APP_NAMES}}').join(namesText(apps)));
+  cfg = Object.assign({}, cfg, { title: fill(cfg.title), description: fill(cfg.description), share: fill(cfg.share) });
   const site = join(root, 'site');
   const part = (name) => {
     if (name === 'WHATS_NEW') return whatsNew(info);
@@ -50,12 +54,14 @@ export function writePage({ root, kitDir, out, cfg, apps, app, info, dl }) {
     SHARE_TEXT: shareText, OFFLINE: a.offline || '', VERSION: info.version, BUILD: info.build || '–', DATE: date,
     VERSION_LABEL: info.version + (info.build ? ' (בנייה ' + info.build + ')' : ''),
     CREDIT_TEXT: cfg.creditText || '', FOOTER_NOTE: cfg.footerNote || '', HUB_URL: HUB_URL,
-    REPO: a.repo || '', DOWNLOADS: timesText((dl[cfg.id] || {}).total || 0)
+    REPO: a.repo || '', DOWNLOADS: timesText((dl[cfg.id] || {}).total || 0),
+    APP_COUNT: String(apps.length), ZIP_URL: ZIP_URL, ZIP_META: zipMeta(zip, apps.length)
   };
   let html = readFileSync(join(kitDir, 'shell.html'), 'utf8');
   const siteJson = JSON.stringify({ id: cfg.id, title: cfg.title, url, shareText }).replace(/</g, '\\u003c');
-  html = html.replace('{{STYLES}}', () => styles).replace('{{BODY}}', () => body.replace(/\s+$/, '')).replace('{{SITE_JSON}}', () => siteJson);
-  html = html.split('{{MORE_APPS}}').join(moreApps(apps, cfg.id)).split('{{HUB_APPS}}').join(hubCards(apps, dl));
+  const scripts = (cfg.js || []).map((f) => '<script src="js/' + f + '"></script>').join('\n');
+  html = html.replace('{{STYLES}}', () => styles).replace('{{SCRIPTS}}', () => scripts).replace('{{BODY}}', () => body.replace(/\s+$/, '')).replace('{{SITE_JSON}}', () => siteJson);
+  html = html.split('{{MORE_APPS}}').join(moreApps(apps, cfg.id)).split('{{HUB_APPS}}').join(hubCards(apps, dl)).split('{{HUB_ICONS}}').join(hubIcons(apps));
   html = html.split('{{DL_HIDDEN}}').join((dl[cfg.id] || {}).total ? '' : ' hidden');
   for (const [k, v] of Object.entries(values)) html = html.split('{{' + k + '}}').join(esc(v));
   const left = html.match(/\{\{[A-Z_]+\}\}/);
